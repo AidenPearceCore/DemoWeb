@@ -1,0 +1,10 @@
+連線字串
+Server=localhost\SQLEXPRESS;Database=DemoDatabase;Trusted_Connection=True;User ID=demo;Password=demo
+
+主管
+帳號sa 密碼demoweb
+
+職員
+帳號demo 密碼demo
+
+
