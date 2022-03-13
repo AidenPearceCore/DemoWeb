@@ -18,19 +18,12 @@ namespace DemoWeb.Models
 
         public virtual DbSet<House> Houses { get; set; } = null!;
 
-
-        //資料庫使用SQL Server
-        #region
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //TODO: 字串待轉移到appsettings.json
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=DemoDatabase;Trusted_Connection=True;User ID=demo;Password=demo");
             }
         }
-        #endregion
 
 
         // 物件對應關聯使用EntityFrameworkCore框架
@@ -61,6 +54,8 @@ namespace DemoWeb.Models
                     .HasMaxLength(10)
                     .HasColumnName("type")
                     .IsFixedLength();
+
+                entity.Property(e => e.Price).HasColumnName("price");
             });
 
             OnModelCreatingPartial(modelBuilder);

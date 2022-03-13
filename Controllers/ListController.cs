@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DemoWeb.Models;
+using DemoWeb.DTOs;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,16 +22,42 @@ namespace DemoWeb.Controllers
         #region
         // GET: api/<ListController>
         [HttpGet]
-        public IEnumerable<House> Get()
+        //public IEnumerable<House> Get()
+        //{
+        //    return _demoDatabaseContext.Houses;
+        //}
+
+        public IEnumerable<ListSelectDto> Get()
         {
-            return _demoDatabaseContext.Houses;
+            var result = _demoDatabaseContext.Houses
+                .Select(a => new ListSelectDto
+                {
+                    Estatename = a.Estatename,
+                    City = a.City,
+                    Type = a.Type,
+                    Numberofrooms = a.Numberofrooms,
+                    Price = a.Price
+                });
+
+            return result;
         }
 
         // GET api/<ListController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ListSelectDto Get(int id)
         {
-            return "value";
+            var result = _demoDatabaseContext.Houses
+                .Where(a => a.Id == id)
+                .Select(a => new ListSelectDto
+                {
+                    Estatename = a.Estatename,
+                    City = a.City,
+                    Type = a.Type,
+                    Numberofrooms = a.Numberofrooms,
+                    Price = a.Price
+                }).SingleOrDefault();
+
+            return result;
         }
 
         // POST api/<ListController>

@@ -1,7 +1,7 @@
 USE [DemoDatabase]
 GO
 
-/****** Object:  Table [dbo].[house]    Script Date: 2022/3/13 下午 03:34:20 ******/
+/****** Object:  Table [dbo].[house]    Script Date: 2022/3/13 下午 09:03:49 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -15,6 +15,7 @@ CREATE TABLE [dbo].[house](
 	[type] [nchar](10) NULL,
 	[floor] [nchar](10) NULL,
 	[numberofrooms] [int] NULL,
+	[price] [int] NULL,
  CONSTRAINT [PK_house] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
