@@ -27,7 +27,7 @@ namespace DemoWeb.Controllers
         //    return _demoDatabaseContext.Houses;
         //}
 
-        public IEnumerable<ListSelectDto> Get()
+        public IEnumerable<ListSelectDto> Get(String? estatename,String? city, String? type)
         {
             var result = _demoDatabaseContext.Houses
                 .Select(a => new ListSelectDto
@@ -38,6 +38,20 @@ namespace DemoWeb.Controllers
                     Numberofrooms = a.Numberofrooms,
                     Price = a.Price
                 });
+
+            //新增物件名稱搜尋 api/<ListController>?estatename=物件名稱&city=地點&type=類型
+            if (!string.IsNullOrWhiteSpace(estatename))
+            {
+                result = result.Where(a => a.Estatename.Contains(estatename));
+            }
+            if (!string.IsNullOrWhiteSpace(city))
+            {
+                result = result.Where(a => a.City.Contains(city));
+            }
+            if (!string.IsNullOrWhiteSpace(type))
+            {
+                result = result.Where(a => a.Type.Contains(type));
+            }
 
             return result;
         }
