@@ -53,8 +53,8 @@ namespace DemoWeb.Controllers
 
         // GET api/<ListController>/id
         [HttpGet("{id}")]
-        public ListSelectDto Get(int id)
-        {//TODO: 待改成用[FromRoute]
+        public ListSelectDto Get([FromRoute]int id)
+        {
             var result = _demoDatabaseContext.Houses
                 .Where(a => a.Id == id)
                 .Select(a => new ListSelectDto
@@ -77,14 +77,37 @@ namespace DemoWeb.Controllers
 
         // PUT api/<ListController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] House value)
         {
+            var update = (from a in _demoDatabaseContext.Houses
+                          where a.Id == id
+                          select a).SingleOrDefault();
+
+            if (update != null)
+            {
+                update.Estatename = value.Estatename;
+                update.City = value.City;
+                update.Numberofrooms = value.Numberofrooms;
+                update.Price = value.Price;
+                update.Type = value.Type;
+                _demoDatabaseContext.SaveChanges();
+            }
+
         }
 
         // DELETE api/<ListController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var delete = (from a in _demoDatabaseContext.Houses
+                          where a.Id == id
+                          select a).SingleOrDefault();
+
+            if(delete != null)
+            {
+                _demoDatabaseContext.Houses.Remove(delete);
+                _demoDatabaseContext.SaveChanges();
+            }
         }
         #endregion
     }
