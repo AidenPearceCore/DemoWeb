@@ -2,37 +2,37 @@ DemoWeb WebApi後端
 ------------------
 
 
->說明\n
-簡易ASP.NET Core WepApi CRUD 實作\n\n
+>說明
+<br>簡易ASP.NET Core WepApi CRUD 實作<br><br>
 
-/appsettings.json 組態資料\n
-/launchSettings.json 環境設定\n
-/Program.cs EntryPoint&註冊DI\n
-/.gitattributes Git版控\n
-/DemoWeb.csproj 相關套件\n
-
-
->開發語言\n
-C#\n
+/appsettings.json 組態資料<br>
+/launchSettings.json 環境設定<br>
+/Program.cs EntryPoint&註冊DI<br>
+/.gitattributes Git版控<br>
+/DemoWeb.csproj 相關套件<br><br>
 
 
->資料表schema建立Script\n
-DemoWeb/DemoData/DemoDatabase.sql\n
+>開發語言
+<br>C#<br><br>
 
 
->編譯&建置版本\n
-Visual Studio 2022\n
-SQL Server Express 2019\n
-SQL Server Management Studio 18\n
+>資料表schema建立Script
+<br>DemoWeb/DemoData/DemoDatabase.sql<br><br>
 
 
->測試範例\n
-請求\n
-GET /api/List/{id}/ information HTTP/1.1\n
-參數說明\n
-[HttpGet("{id}")]\n
-回應\n
-HTTP/1.1 200 OK + json格式資料回傳\n
+>編譯&建置版本
+<br>Visual Studio 2022<br>
+SQL Server Express 2019<br>
+SQL Server Management Studio 18<br><br>
+
+
+>測試範例
+<br>請求<br>
+GET /api/List/{id}/ information HTTP/1.1<br>
+參數說明<br>
+[HttpGet("{id}")]<br>
+回應<br>
+HTTP/1.1 200 OK + json格式資料回傳<br><br>
 
 
 >待學習
