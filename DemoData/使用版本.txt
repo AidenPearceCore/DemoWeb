@@ -1,3 +1,0 @@
-Visual Studio 2022
-SQL Server Express 2019
-SQL Server Management Studio 18

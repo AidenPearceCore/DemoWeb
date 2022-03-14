@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//資料庫使用SQL Server
+// 注入EF Core服務
 builder.Services.AddDbContext<DemoDatabaseContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DemoDatabase"));

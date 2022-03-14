@@ -25,10 +25,6 @@ namespace DemoWeb.Models
             }
         }
 
-
-        // 物件對應關聯使用EntityFrameworkCore框架
-        // 資料庫存取使用lambda陳述式, LINQ查詢
-        #region
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<House>(entity =>
@@ -62,6 +58,6 @@ namespace DemoWeb.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-        #endregion
+        
     }
 }

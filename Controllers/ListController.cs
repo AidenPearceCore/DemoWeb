@@ -11,22 +11,17 @@ namespace DemoWeb.Controllers
     public class ListController : ControllerBase
     {
 
-        //使用DI依賴注入反向控制資料庫
+        #region 使用DI依賴注入反向控制資料庫
         private readonly DemoDatabaseContext _demoDatabaseContext;
         public ListController(DemoDatabaseContext demoDatabaseContext)
         {
             _demoDatabaseContext = demoDatabaseContext;
         }
+        #endregion
 
-        //使用Restful風格實作WebApi
-        #region
+        #region 使用Restful風格實作WebApi, 資料庫存取使用lambda陳述式與LINQ查詢
         // GET: api/<ListController>
         [HttpGet]
-        //public IEnumerable<House> Get()
-        //{
-        //    return _demoDatabaseContext.Houses;
-        //}
-
         public IEnumerable<ListSelectDto> Get(String? estatename,String? city, String? type)
         {
             var result = _demoDatabaseContext.Houses
@@ -39,7 +34,7 @@ namespace DemoWeb.Controllers
                     Price = a.Price
                 });
 
-            //新增物件名稱搜尋 api/<ListController>?estatename=物件名稱&city=地點&type=類型
+            //TODO: Query方式搜尋 待抽離成一個擴充功能
             if (!string.IsNullOrWhiteSpace(estatename))
             {
                 result = result.Where(a => a.Estatename.Contains(estatename));
@@ -51,15 +46,15 @@ namespace DemoWeb.Controllers
             if (!string.IsNullOrWhiteSpace(type))
             {
                 result = result.Where(a => a.Type.Contains(type));
-            }
+            }            
 
             return result;
         }
 
-        // GET api/<ListController>/5
+        // GET api/<ListController>/id
         [HttpGet("{id}")]
         public ListSelectDto Get(int id)
-        {
+        {//TODO: 待改成用[FromRoute]
             var result = _demoDatabaseContext.Houses
                 .Where(a => a.Id == id)
                 .Select(a => new ListSelectDto
