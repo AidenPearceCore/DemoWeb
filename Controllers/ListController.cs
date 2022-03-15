@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using DemoWeb.Services;
 using DemoWeb.Models;
 using DemoWeb.DTOs;
 
@@ -10,7 +11,6 @@ namespace DemoWeb.Controllers
     [ApiController]
     public class ListController : ControllerBase
     {
-
         #region 使用DI依賴注入反向控制資料庫
         private readonly DemoDatabaseContext _demoDatabaseContext;
         public ListController(DemoDatabaseContext demoDatabaseContext)
@@ -19,95 +19,47 @@ namespace DemoWeb.Controllers
         }
         #endregion
 
-        #region 使用Restful風格實作WebApi, 資料庫存取使用lambda陳述式與LINQ查詢
+        //TODO: 與Service高耦合 待改成DI注入
+        ListService listService = new ListService();
+
+        #region 使用Restful風格實作WebApi
         // GET: api/<ListController>
         [HttpGet]
         public IEnumerable<ListSelectDto> Get(String? estatename,String? city, String? type)
         {
-            var result = _demoDatabaseContext.Houses
-                .Select(a => new ListSelectDto
-                {
-                    Estatename = a.Estatename,
-                    City = a.City,
-                    Type = a.Type,
-                    Numberofrooms = a.Numberofrooms,
-                    Price = a.Price
-                });
-
-            //TODO: Query方式搜尋 待抽離成一個擴充功能
-            if (!string.IsNullOrWhiteSpace(estatename))
-            {
-                result = result.Where(a => a.Estatename.Contains(estatename));
-            }
-            if (!string.IsNullOrWhiteSpace(city))
-            {
-                result = result.Where(a => a.City.Contains(city));
-            }
-            if (!string.IsNullOrWhiteSpace(type))
-            {
-                result = result.Where(a => a.Type.Contains(type));
-            }            
+            var result = listService.GetAllHouses(_demoDatabaseContext, estatename, city, type);
 
             return result;
         }
 
         // GET api/<ListController>/id
         [HttpGet("{id}")]
-        public ListSelectDto Get([FromRoute]int id)
+        public ListSelectDto Get(int id)
         {
-            var result = _demoDatabaseContext.Houses
-                .Where(a => a.Id == id)
-                .Select(a => new ListSelectDto
-                {
-                    Estatename = a.Estatename,
-                    City = a.City,
-                    Type = a.Type,
-                    Numberofrooms = a.Numberofrooms,
-                    Price = a.Price
-                }).SingleOrDefault();
+            var result = listService.GetHouseById(_demoDatabaseContext, id);
 
             return result;
         }
 
         // POST api/<ListController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] House value)
         {
+            listService.InsertHouse(_demoDatabaseContext, value);
         }
 
-        // PUT api/<ListController>/5
+        // PUT api/<ListController>/id
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] House value)
         {
-            var update = (from a in _demoDatabaseContext.Houses
-                          where a.Id == id
-                          select a).SingleOrDefault();
-
-            if (update != null)
-            {
-                update.Estatename = value.Estatename;
-                update.City = value.City;
-                update.Numberofrooms = value.Numberofrooms;
-                update.Price = value.Price;
-                update.Type = value.Type;
-                _demoDatabaseContext.SaveChanges();
-            }
-
+            listService.UpdateHouseById(_demoDatabaseContext, id, value);
         }
 
-        // DELETE api/<ListController>/5
+        // DELETE api/<ListController>/id
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var delete = (from a in _demoDatabaseContext.Houses
-                          where a.Id == id
-                          select a).SingleOrDefault();
-
-            if(delete != null)
-            {
-                _demoDatabaseContext.Houses.Remove(delete);
-                _demoDatabaseContext.SaveChanges();
-            }
+            listService.DeleteHouseById(_demoDatabaseContext, id);
         }
         #endregion
     }
