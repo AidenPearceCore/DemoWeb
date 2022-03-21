@@ -3,3 +3,8 @@ Part1
 https://youtu.be/ajCYuDZPfyw
 Part2
 https://youtu.be/DbLk3zMld3o
+
+
+
+註: 1.影片中口誤,應實作介面,繼承不太對
+    2.影片中介面資料層放一起不太對,要再多一個Interface資料夾
