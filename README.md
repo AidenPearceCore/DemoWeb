@@ -1,44 +1,44 @@
-DemoWeb WebApi«áºİ
-------------------
+# ç°¡æ˜“ASP.NET Core å¾Œç«¯WebApiå¯¦ä½œ
 
+## Folder
+>/appsettings.json çµ„æ…‹è³‡æ–™<br>
+>/launchSettings.json ç’°å¢ƒè¨­å®š<br>
+>/Program.cs EntryPoint&è¨»å†ŠDI<br>
+>/.gitattributes Gitç‰ˆæ§<br>
+>/DemoWeb.csproj ç›¸é—œå¥—ä»¶<br><br>
 
->»¡©ú
-<br>Â²©öASP.NET Core WepApi CRUD ¹ê§@<br><br>
+## Language
+><br>C#<br><br>
 
-/appsettings.json ²ÕºA¸ê®Æ<br>
-/launchSettings.json Àô¹Ò³]©w<br>
-/Program.cs EntryPoint&µù¥UDI<br>
-/.gitattributes Gitª©±±<br>
-/DemoWeb.csproj ¬ÛÃö®M¥ó<br><br>
+## Table Schema Script
+><br>DemoWeb/DemoData/DemoDatabase.sql<br><br>
 
+## Version
+><br>Visual Studio 2022<br>
+>SQL Server Express 2019<br>
+>SQL Server Management Studio 18<br><br>
 
->¶}µo»y¨¥
-<br>C#<br><br>
+## Example
+><br>è«‹æ±‚<br>
+>GET /api/List/{id}/ information HTTP/1.1<br>
+>åƒæ•¸èªªæ˜<br>
+>[HttpGet("{id}")]<br>
+>å›æ‡‰<br>
+>HTTP/1.1 200 OK + jsonæ ¼å¼è³‡æ–™å›å‚³<br><br>
 
+## Contributing
+><br>è«‹ä½¿ç”¨pull requests<br><br>
 
->¸ê®Æªíschema«Ø¥ßScript
-<br>DemoWeb/DemoData/DemoDatabase.sql<br><br>
+## License
+><br>[MIT](https://choosealicense.com/licenses/mit/)<br><br>
 
-
->½sÄ¶&«Ø¸mª©¥»
-<br>Visual Studio 2022<br>
-SQL Server Express 2019<br>
-SQL Server Management Studio 18<br><br>
-
-
->´ú¸Õ½d¨Ò
-<br>½Ğ¨D<br>
-GET /api/List/{id}/ information HTTP/1.1<br>
-°Ñ¼Æ»¡©ú<br>
-[HttpGet("{id}")]<br>
-¦^À³<br>
-HTTP/1.1 200 OK + json®æ¦¡¸ê®Æ¦^¶Ç<br><br>
-
-
->«İ¾Ç²ß
+## Resource
 - Azure CI/CD
-- ¦Û°Ê¤ÆUnit testing
-- Markdown»yªk <https://www.markdownguide.org/basic-syntax/>
+- Automated Unit Testing
+- Markdown Syntax <https://www.markdownguide.org/basic-syntax/>
 - <https://docs.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio>
 - <https://docs.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-6.0?view=aspnetcore-6.0>
+
+
+
 
