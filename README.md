@@ -27,7 +27,7 @@
 >HTTP/1.1 200 OK + json格式資料回傳<br><br>
 
 ## Contributing
-><br>請使用pull requests<br><br>
+><br>請使用pull request<br><br>
 
 ## License
 ><br>[MIT](https://choosealicense.com/licenses/mit/)<br><br>
