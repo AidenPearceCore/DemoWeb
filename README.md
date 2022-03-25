@@ -1,4 +1,9 @@
 # 簡易ASP.NET Core 後端WebApi實作
+<br>
+
+![APM](https://img.shields.io/apm/l/vim-mode?color=lightgrey&label=license&logo=.net&logoColor=lightgrey)
+
+![GitHub commit checks state](https://img.shields.io/github/checks-status/YuChenMVC/DemoWeb/5b233a3e5b4225fd16b6d22f1fc2fa985bbf1126?color=ff69b4&label=DemoWeb&logo=github&logoColor=%23FC60A8&style=plastic)
 
 ## Folder
 >/appsettings.json 組態資料<br>
@@ -8,7 +13,9 @@
 >/DemoWeb.csproj 相關套件<br><br>
 
 ## Language
-><br>C#<br><br>
+```C#
+C#
+```
 
 ## Table Schema Script
 ><br>DemoWeb/DemoData/DemoDatabase.sql<br><br>
@@ -38,7 +45,3 @@
 - Markdown Syntax <https://www.markdownguide.org/basic-syntax/>
 - <https://docs.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio>
 - <https://docs.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-6.0?view=aspnetcore-6.0>
-
-
-
-
