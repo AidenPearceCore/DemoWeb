@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿//using AutoMapper;
 using DemoWeb.DTOs;
 using DemoWeb.Models;
 
@@ -6,12 +6,12 @@ namespace DemoWeb.Services
 {
     public class ListService
     {
-        private readonly IMapper _iMapper;
+        //private readonly IMapper _iMapper;
 
-        public ListService(IMapper imapper)
-        {
-            _iMapper = imapper;
-        }
+        //public ListService(IMapper imapper)
+        //{
+        //    _iMapper = imapper;
+        //}
 
         #region 第二層Service層
         public IEnumerable<ListSelectDto> GetAllHousesByDTO(DemoDatabaseContext _demoDatabaseContext)
@@ -31,22 +31,22 @@ namespace DemoWeb.Services
 
         public IEnumerable<House> GetAllHouses(DemoDatabaseContext _demoDatabaseContext)
         {
-            var result = _demoDatabaseContext.Houses;
             //原本寫法
-            //.Select(a => new House
-            //{
-            //    Id = a.Id,
-            //    Estatename = a.Estatename,
-            //    City = a.City,
-            //    Type = a.Type,
-            //    Floor = a.Floor,
-            //    Numberofrooms = a.Numberofrooms,
-            //    Price = a.Price
-            //});
-            //return result;
+            var result = _demoDatabaseContext.Houses            
+            .Select(a => new House
+             {
+                 Id = a.Id,
+                 Estatename = a.Estatename,
+                 City = a.City,
+                 Type = a.Type,
+                 Floor = a.Floor,
+                 Numberofrooms = a.Numberofrooms,
+                 Price = a.Price
+             });
+            return result;
 
             //與AutoMapper寫法 比較
-            return _iMapper.Map<IEnumerable<House>>(result);
+            //return _iMapper.Map<IEnumerable<House>>(result);
         }
 
 

@@ -2,6 +2,7 @@
 using DemoWeb.Services;
 using DemoWeb.Models;
 using DemoWeb.DTOs;
+using DemoWeb.Parameters;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,20 +26,30 @@ namespace DemoWeb.Controllers
         #region 使用Restful風格實作WebApi
         // GET: api/<ListController>
         [HttpGet]
-        public IEnumerable<House> Get()
+        public IActionResult Get()
         {
             var result = _listService.GetAllHouses(_demoDatabaseContext);
             //這行是DTO版的Model
             //var result = _listService.GetAllHousesByDTO(_demoDatabaseContext);
 
-            return result;
+            if(result == null || result.Count() == 0)
+            {
+                return NotFound("404 Not Found");
+            }
+
+            return Ok(result);
         }
 
         // GET api/<ListController>/id
         [HttpGet("{id}")]
-        public ListSelectDto Get(int id)
+        public ListSelectDto Get([FromRoute] ListSelectParameter value)
         {
-            var result = _listService.GetHouseById(_demoDatabaseContext, id);
+            var result = _listService.GetHouseById(_demoDatabaseContext, value.id);
+
+            if (result == null)
+            {
+                Response.StatusCode = 404;
+            }
 
             return result;
         }
@@ -59,9 +70,9 @@ namespace DemoWeb.Controllers
 
         // DELETE api/<ListController>/id
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete([FromRoute] ListSelectParameter value)
         {
-            _listService.DeleteHouseById(_demoDatabaseContext, id);
+            _listService.DeleteHouseById(_demoDatabaseContext, value.id);
         }
         #endregion
     }
