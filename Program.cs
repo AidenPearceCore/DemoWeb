@@ -15,6 +15,8 @@ builder.Services.AddDbContext<DemoDatabaseContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DemoDatabase"));
 });
+//Add AutoMapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
