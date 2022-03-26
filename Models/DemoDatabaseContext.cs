@@ -17,11 +17,14 @@ namespace DemoWeb.Models
         }
 
         public virtual DbSet<House> Houses { get; set; } = null!;
+        public virtual DbSet<Uploadfile> Uploadfiles { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
+
+                
             }
         }
 
@@ -46,18 +49,24 @@ namespace DemoWeb.Models
 
                 entity.Property(e => e.Numberofrooms).HasColumnName("numberofrooms");
 
+                entity.Property(e => e.Price).HasColumnName("price");
+
                 entity.Property(e => e.Type)
                     .HasMaxLength(10)
                     .HasColumnName("type")
                     .IsFixedLength();
+            });
 
-                entity.Property(e => e.Price).HasColumnName("price");
+            modelBuilder.Entity<Uploadfile>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("uploadfile");
             });
 
             OnModelCreatingPartial(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-        
     }
 }
