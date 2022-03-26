@@ -5,6 +5,8 @@
 
 ![GitHub commit checks state](https://img.shields.io/github/checks-status/YuChenMVC/DemoWeb/5b233a3e5b4225fd16b6d22f1fc2fa985bbf1126?color=ff69b4&label=DemoWeb&logo=github&logoColor=%23FC60A8&style=plastic)
 
+![png](https://github.com/YuChenMVC/DemoWeb/blob/master/雜七雜八/api.png)
+
 ## Folder
 >/appsettings.json 組態資料<br>
 >/launchSettings.json 環境設定<br>
@@ -18,7 +20,7 @@ C#
 ```
 
 ## Table Schema Script
-><br>DemoWeb/DemoData/DemoDatabase.sql<br><br>
+><br>DemoWeb/雜七雜八/DemoDatabase.sql<br><br>
 
 ## Version
 ><br>Visual Studio 2022<br>
