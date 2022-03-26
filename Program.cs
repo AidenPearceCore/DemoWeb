@@ -5,15 +5,12 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddScoped<ListService>();
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-// ª`¤JEF CoreªA°È
+// Register EntityFrameworkCore Service
 builder.Services.AddDbContext<DemoDatabaseContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DemoDatabase"));

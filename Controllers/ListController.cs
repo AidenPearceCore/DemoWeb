@@ -25,9 +25,11 @@ namespace DemoWeb.Controllers
         #region 使用Restful風格實作WebApi
         // GET: api/<ListController>
         [HttpGet]
-        public IEnumerable<ListSelectDto> Get(String? estatename,String? city, String? type)
+        public IEnumerable<House> Get()
         {
-            var result = _listService.GetAllHouses(_demoDatabaseContext, estatename, city, type);
+            var result = _listService.GetAllHouses(_demoDatabaseContext);
+            //這行是DTO版的Model
+            //var result = _listService.GetAllHousesByDTO(_demoDatabaseContext);
 
             return result;
         }

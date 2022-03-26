@@ -6,7 +6,7 @@ namespace DemoWeb.Services
     public class ListService
     {
         #region 第二層Service層
-        public IEnumerable<ListSelectDto> GetAllHouses(DemoDatabaseContext _demoDatabaseContext, String? estatename, String? city, String? type)
+        public IEnumerable<ListSelectDto> GetAllHousesByDTO(DemoDatabaseContext _demoDatabaseContext)
         {
             var result = _demoDatabaseContext.Houses
             .Select(a => new ListSelectDto
@@ -16,11 +16,27 @@ namespace DemoWeb.Services
                 Type = a.Type,
                 Numberofrooms = a.Numberofrooms,
                 Price = a.Price
-            });
-            result = SearchByQueryParameter(estatename, city, type, result);
+            });            
 
             return result;
         }
+
+        public IEnumerable<House> GetAllHouses(DemoDatabaseContext _demoDatabaseContext)
+        {
+            var result = _demoDatabaseContext.Houses
+            .Select(a => new House
+            {
+                Id = a.Id,
+                Estatename = a.Estatename,
+                City = a.City,
+                Type = a.Type,
+                Floor = a.Floor,
+                Numberofrooms = a.Numberofrooms,
+                Price = a.Price
+            });
+            return result;
+        }
+
 
         public ListSelectDto GetHouseById(DemoDatabaseContext _demoDatabaseContext, int id)
         {
@@ -84,24 +100,24 @@ namespace DemoWeb.Services
                 _demoDatabaseContext.SaveChanges();
             }
         }
+        
+        //private static IQueryable<ListSelectDto> SearchByQueryParameter(string? estatename, string? city, string? type, IQueryable<ListSelectDto> result)
+        //{
+        //    if (!string.IsNullOrWhiteSpace(estatename))
+        //    {
+        //        result = result.Where(a => a.Estatename.Contains(estatename));
+        //    }
+        //    if (!string.IsNullOrWhiteSpace(city))
+        //    {
+        //        result = result.Where(a => a.City.Contains(city));
+        //    }
+        //    if (!string.IsNullOrWhiteSpace(type))
+        //    {
+        //        result = result.Where(a => a.Type.Contains(type));
+        //    }
 
-        private static IQueryable<ListSelectDto> SearchByQueryParameter(string? estatename, string? city, string? type, IQueryable<ListSelectDto> result)
-        {
-            if (!string.IsNullOrWhiteSpace(estatename))
-            {
-                result = result.Where(a => a.Estatename.Contains(estatename));
-            }
-            if (!string.IsNullOrWhiteSpace(city))
-            {
-                result = result.Where(a => a.City.Contains(city));
-            }
-            if (!string.IsNullOrWhiteSpace(type))
-            {
-                result = result.Where(a => a.Type.Contains(type));
-            }
-
-            return result;
-        }
+        //    return result;
+        //}
         #endregion
 
     }
