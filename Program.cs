@@ -19,7 +19,8 @@ builder.Services.AddDbContext<DemoDatabaseContext>(options =>
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
-
+//Add WebHostEnvironment
+IWebHostEnvironment env = app.Environment;
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
