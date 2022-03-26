@@ -88,7 +88,7 @@ namespace DemoWeb.Services
                           where a.Id == id
                           select a).SingleOrDefault();
 
-            if (update != null)
+            if (update is not null)
             {
                 update.Estatename = value.Estatename;
                 update.City = value.City;
@@ -106,7 +106,7 @@ namespace DemoWeb.Services
                           where a.Id == id
                           select a).SingleOrDefault();
 
-            if (delete != null)
+            if (delete is not null)
             {
                 _demoDatabaseContext.Houses.Remove(delete);
                 _demoDatabaseContext.SaveChanges();

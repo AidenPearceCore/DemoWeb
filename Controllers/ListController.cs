@@ -32,7 +32,7 @@ namespace DemoWeb.Controllers
             //這行是DTO版的Model
             //var result = _listService.GetAllHousesByDTO(_demoDatabaseContext);
 
-            if(result == null || result.Count() == 0)
+            if(result is null || result.Count() == 0)
             {
                 return NotFound("404 Not Found");
             }
@@ -46,7 +46,7 @@ namespace DemoWeb.Controllers
         {
             var result = _listService.GetHouseById(_demoDatabaseContext, value.id);
 
-            if (result == null)
+            if (result is null)
             {
                 Response.StatusCode = 404;
             }
