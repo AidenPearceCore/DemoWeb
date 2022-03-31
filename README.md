@@ -1,6 +1,6 @@
 # 簡易ASP.NET Core 後端WebApi實作
 <br>
-shields.io badges目前爆掉中 等修好
+
 ![APM](https://img.shields.io/apm/l/vim-mode?color=lightgrey&label=license&logo=.net&logoColor=lightgrey)
 
 ![GitHub commit checks state](https://img.shields.io/github/checks-status/YuChenMVC/DemoWeb/5b233a3e5b4225fd16b6d22f1fc2fa985bbf1126?color=ff69b4&label=DemoWeb&logo=github&logoColor=%23FC60A8&style=plastic)
