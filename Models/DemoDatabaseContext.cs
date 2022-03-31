@@ -20,12 +20,13 @@ namespace DemoWeb.Models
         public virtual DbSet<Customer> Customers { get; set; } = null!;
         public virtual DbSet<House> Houses { get; set; } = null!;
         public virtual DbSet<Uploadfile> Uploadfiles { get; set; } = null!;
+        public virtual DbSet<User> Users { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-         
+                
             }
         }
 
@@ -117,6 +118,76 @@ namespace DemoWeb.Models
                 entity.HasNoKey();
 
                 entity.ToTable("uploadfile");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("user");
+
+                entity.Property(e => e.Id)
+                    .HasMaxLength(10)
+                    .HasColumnName("id")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Admin)
+                    .HasMaxLength(10)
+                    .HasColumnName("admin")
+                    .IsFixedLength();
+
+                entity.Property(e => e.FirstName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("firstName");
+
+                entity.Property(e => e.HashSaltedPwd).IsUnicode(false);
+
+                entity.Property(e => e.Intro)
+                    .IsUnicode(false)
+                    .HasColumnName("intro");
+
+                entity.Property(e => e.LastLogin)
+                    .HasColumnType("datetime")
+                    .HasColumnName("lastLogin");
+
+                entity.Property(e => e.LastName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("lastName");
+
+                entity.Property(e => e.MiddleName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("middleName");
+
+                entity.Property(e => e.Mobile)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("mobile");
+
+                entity.Property(e => e.Password).IsUnicode(false);
+
+                entity.Property(e => e.Profile)
+                    .IsUnicode(false)
+                    .HasColumnName("profile");
+
+                entity.Property(e => e.RegisteredDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("registeredDate");
+
+                entity.Property(e => e.Role)
+                    .HasMaxLength(10)
+                    .HasColumnName("role")
+                    .IsFixedLength();
+
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("userID");
+
+                entity.Property(e => e.Vender)
+                    .HasMaxLength(10)
+                    .HasColumnName("vender")
+                    .IsFixedLength();
             });
 
             OnModelCreatingPartial(modelBuilder);
