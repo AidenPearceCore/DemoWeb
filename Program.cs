@@ -1,6 +1,7 @@
 using DemoWeb.Models;
 using DemoWeb.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +19,12 @@ builder.Services.AddDbContext<DemoDatabaseContext>(options =>
 });
 //Add Cookie
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie();
+.AddCookie();
+//Add Authorize Filter
+builder.Services.AddMvc(options =>
+{
+    options.Filters.Add(new AuthorizeFilter());
+});
 //Add AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -34,14 +40,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
 app.MapControllers();
 
+app.UseCookiePolicy();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapRazorPages();
 app.MapDefaultControllerRoute();
 
 app.Run();
