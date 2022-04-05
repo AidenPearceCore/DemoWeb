@@ -14,8 +14,7 @@ namespace DemoWeb.Controllers
             _env = env;
         }
 
-        #region 多筆檔案上傳
-        // POST api/<FileUploadController>
+        #region Post(List<IFormFile> files) 多筆檔案上傳
         [HttpPost]
         public void Post(List<IFormFile> files)
         {

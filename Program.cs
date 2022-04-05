@@ -25,6 +25,13 @@ builder.Services.AddMvc(options =>
 {
     options.Filters.Add(new AuthorizeFilter());
 });
+// CSRF
+//builder.Services.AddAntiforgery(options =>
+//{
+//    options.FormFieldName = "AntiforgeryFieldname";
+//    options.HeaderName = "X-CSRF-TOKEN-HEADERNAME";
+//    options.SuppressXFrameOptionsHeader = false;
+//});
 //Add AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -45,7 +52,22 @@ app.MapControllers();
 app.UseCookiePolicy();
 app.UseAuthentication();
 app.UseAuthorization();
+// CSRF
+//var antiforgery = app.Services.GetRequiredService<IAntiforgery>();
+//app.Use((context, next) =>
+//{
+//    var requestPath = context.Request.Path.Value;
 
+//    if (string.Equals(requestPath, "/", StringComparison.OrdinalIgnoreCase)
+//        || string.Equals(requestPath, "/index.html", StringComparison.OrdinalIgnoreCase))
+//    {
+//        var tokenSet = antiforgery.GetAndStoreTokens(context);
+//        context.Response.Cookies.Append("XSRF-TOKEN", tokenSet.RequestToken!,
+//            new CookieOptions { HttpOnly = false });
+//    }
+
+//    return next(context);
+//});
 app.MapDefaultControllerRoute();
 
 app.Run();

@@ -12,7 +12,7 @@ namespace DemoWeb.Controllers
     [ApiController]
     public class ListController : ControllerBase
     {
-        #region 使用DI依賴注入(資料庫,Service)
+        #region DI依賴注入(資料庫,Service)
         private readonly DemoDatabaseContext _demoDatabaseContext;
         private readonly ListService _listService;
 
@@ -23,7 +23,7 @@ namespace DemoWeb.Controllers
         }
         #endregion
 
-        #region 使用Restful風格實作WebApi
+        #region public IActionResult Get()
         // GET: api/<ListController>
         [HttpGet]
         public IActionResult Get()
@@ -39,7 +39,9 @@ namespace DemoWeb.Controllers
 
             return Ok(result);
         }
+        #endregion
 
+        #region public ListSelectDto Get([FromRoute] ListSelectParameter value)
         // GET api/<ListController>/id
         [HttpGet("{id}")]
         public ListSelectDto Get([FromRoute] ListSelectParameter value)
@@ -53,21 +55,27 @@ namespace DemoWeb.Controllers
 
             return result;
         }
+        #endregion
 
+        #region public void Post([FromBody] House value)
         // POST api/<ListController>
         [HttpPost]
         public void Post([FromBody] House value)
         {
             _listService.InsertHouse(_demoDatabaseContext, value);
         }
+        #endregion
 
+        #region public void Put(int id, [FromBody] House value)
         // PUT api/<ListController>/id
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] House value)
         {
             _listService.UpdateHouseById(_demoDatabaseContext, id, value);
         }
+        #endregion
 
+        #region public void Delete([FromRoute] ListSelectParameter value)
         // DELETE api/<ListController>/id
         [HttpDelete("{id}")]
         public void Delete([FromRoute] ListSelectParameter value)
