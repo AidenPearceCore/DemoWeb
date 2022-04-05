@@ -26,6 +26,7 @@ builder.Services.AddMvc(options =>
     options.Filters.Add(new AuthorizeFilter());
 });
 // CSRF
+builder.Services.AddAntiforgery();
 //builder.Services.AddAntiforgery(options =>
 //{
 //    options.FormFieldName = "AntiforgeryFieldname";

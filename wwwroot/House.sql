@@ -1,7 +1,7 @@
 USE [DemoDatabase]
 GO
 
-/****** Object:  Table [dbo].[house]    Script Date: 2022/3/13 下午 09:03:49 ******/
+/****** Object:  Table [dbo].[house]    Script Date: 2022/4/6 上午 12:04:07 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -22,4 +22,6 @@ CREATE TABLE [dbo].[house](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
+
+
 
