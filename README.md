@@ -22,7 +22,7 @@ C#
 ## Table Schema Script
 ><br>DemoWeb/雜七雜八/DemoDatabase.sql<br><br>
 
-## Version
+## Tools Version
 ><br>Visual Studio 2022<br>
 >SQL Server Express 2019<br>
 >SQL Server Management Studio 18<br><br>
