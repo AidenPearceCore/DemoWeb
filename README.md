@@ -1,4 +1,4 @@
-# 簡易ASP.NET Core 後端WebApi實作
+# Simple ASP.NET Core WebApi
 <br>
 
 ![APM](https://img.shields.io/apm/l/vim-mode?color=lightgrey&label=license&logo=.net&logoColor=lightgrey)
