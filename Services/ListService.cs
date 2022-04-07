@@ -95,6 +95,7 @@ namespace DemoWeb.Services
                 update.Numberofrooms = value.Numberofrooms;
                 update.Price = value.Price;
                 update.Type = value.Type;
+                update.Floor = value.Floor;
                 _demoDatabaseContext.SaveChanges();
             }
 

@@ -32,7 +32,6 @@
   <ItemGroup>
     <Folder Include="Abstracts\" />
     <Folder Include="wwwroot\" />
-    <Folder Include="ValidationAttributes\" />
   </ItemGroup>
 
 </Project>
