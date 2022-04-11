@@ -23,7 +23,10 @@ namespace DemoWeb.Controllers
         }
         #endregion
 
-        #region public string Login(LoginDto value) 使用者登入
+        /// <summary>
+        /// 使用者登入
+        /// </summary>
+        /// <param name="value">帳號密碼</param>
         [HttpPost]
         public string Login(LoginDto value)
         {
@@ -46,17 +49,19 @@ namespace DemoWeb.Controllers
             var claimsIdentity = new ClaimsIdentity(claim, CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));            
             _logger.LogInformation($"{user.UserId}於{DateTime.UtcNow.ToLongTimeString()}登入成功");
+
             return "登入成功";
         }
-        #endregion
 
-        #region public string Logout() 使用者登出
+        /// <summary>
+        /// 使用者登出
+        /// </summary>
         [HttpDelete]
         public string Logout()
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
             return "登出成功";
         }
-        #endregion
     }
 }

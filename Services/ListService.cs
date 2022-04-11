@@ -13,7 +13,7 @@ namespace DemoWeb.Services
         //    _iMapper = imapper;
         //}
 
-        #region 第二層Service層
+        #region 第二層ListService層
         public IEnumerable<ListSelectDto> GetAllHousesByDTO(DemoDatabaseContext _demoDatabaseContext)
         {
             var result = _demoDatabaseContext.Houses

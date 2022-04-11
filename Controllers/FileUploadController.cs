@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace DemoWeb.Controllers
 {
     [Route("api/[controller]")]
@@ -14,17 +12,17 @@ namespace DemoWeb.Controllers
             _env = env;
         }
 
-        #region Post(List<IFormFile> files) 多筆檔案上傳
+        /// <summary>
+        /// 多筆檔案上傳
+        /// </summary>
+        /// <param name="files">檔案</param>
         [HttpPost]
         public void Post(List<IFormFile> files)
         {
-            //取得存放目錄
-            string rootPath = _env.ContentRootPath + @"\wwwroot\";
-            //多筆檔案傳入
-            foreach(var file in files)
-            {
-                //空檔案不上傳
-                if(file.Length > 0)
+            string rootPath = _env.ContentRootPath + @"\wwwroot\"; //取得存放目錄            
+            foreach (var file in files)                            //多筆檔案傳入
+            {                
+                if(file.Length > 0)                                //空檔案不上傳
                 {
                     string filePath = file.FileName;
                     using var stream = System.IO.File.Create(rootPath + filePath);
@@ -32,7 +30,6 @@ namespace DemoWeb.Controllers
                 }
             }
         }
-        #endregion
     }
 }
 

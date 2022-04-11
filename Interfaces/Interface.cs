@@ -1,6 +1,6 @@
 ﻿namespace DemoWeb.Interfaces
 {
-    #region 放置DI容器
+    #region 這裡放置DI容器
     public interface Interface
     {
     }

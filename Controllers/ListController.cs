@@ -4,15 +4,13 @@ using DemoWeb.Models;
 using DemoWeb.DTOs;
 using DemoWeb.Parameters;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace DemoWeb.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ListController : ControllerBase
     {
-        #region DI依賴注入(資料庫,Service)
+        #region 依賴注入(資料庫,Service)
         private readonly DemoDatabaseContext _demoDatabaseContext;
         private readonly ListService _listService;
 
@@ -23,8 +21,10 @@ namespace DemoWeb.Controllers
         }
         #endregion
 
-        #region public IActionResult Get()
-        // GET: api/<ListController>
+        #region #region 使用Restful風格實作WebApi
+        /// <summary>
+        /// GET: api/<ListController>
+        /// </summary>
         [HttpGet]
         public IActionResult Get()
         {
@@ -39,10 +39,11 @@ namespace DemoWeb.Controllers
 
             return Ok(result);
         }
-        #endregion
 
-        #region public ListSelectDto Get([FromRoute] ListSelectParameter value)
-        // GET api/<ListController>/id
+        /// <summary>
+        /// GET api/<ListController>/id
+        /// </summary>
+        /// <param name="value">預查詢的欄位id值</param>
         [HttpGet("{id}")]
         public ListSelectDto Get([FromRoute] ListSelectParameter value)
         {
@@ -55,28 +56,32 @@ namespace DemoWeb.Controllers
 
             return result;
         }
-        #endregion
 
-        #region public void Post([FromBody] House value)
-        // POST api/<ListController>
+        /// <summary>
+        /// POST api/<ListController>
+        /// </summary>
+        /// <param name="value">預新增的Model欄位</param>
         [HttpPost]
         public void Post([FromBody] House value)
         {
             _listService.InsertHouse(_demoDatabaseContext, value);
         }
-        #endregion
 
-        #region public void Put(int id, [FromBody] House value)
-        // PUT api/<ListController>/id
+        /// <summary>
+        /// PUT api/<ListController>/id
+        /// </summary>
+        /// <param name="id">預更新的欄位id值</param>
+        /// <param name="value">預更新的Model資料</param>
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] House value)
         {
             _listService.UpdateHouseById(_demoDatabaseContext, id, value);
         }
-        #endregion
 
-        #region public void Delete([FromRoute] ListSelectParameter value)
-        // DELETE api/<ListController>/id
+        /// <summary>
+        /// DELETE api/<ListController>/id
+        /// </summary>
+        /// <param name="value">預刪除的欄位id值</param>
         [HttpDelete("{id}")]
         public void Delete([FromRoute] ListSelectParameter value)
         {
