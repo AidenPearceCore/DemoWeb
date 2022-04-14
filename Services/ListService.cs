@@ -66,7 +66,7 @@ namespace DemoWeb.Services
             return result;
         }
 
-        public void InsertHouse(DemoDatabaseContext _demoDatabaseContext, House value)
+        public async Task InsertHouse(DemoDatabaseContext _demoDatabaseContext, House value)
         {
             House insert = new()
             {
@@ -79,7 +79,7 @@ namespace DemoWeb.Services
                 Price = value.Price
             };
             _demoDatabaseContext.Houses.Add(insert);
-            _demoDatabaseContext.SaveChanges();
+            await _demoDatabaseContext.SaveChangesAsync();
         }
 
         public void UpdateHouseById(DemoDatabaseContext _demoDatabaseContext, int id, House value)

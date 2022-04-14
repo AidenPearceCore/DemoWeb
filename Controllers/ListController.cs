@@ -62,9 +62,9 @@ namespace DemoWeb.Controllers
         /// </summary>
         /// <param name="value">預新增的Model欄位</param>
         [HttpPost]
-        public void Post([FromBody] House value)
+        public async Task Post([FromBody] House value)
         {
-            _listService.InsertHouse(_demoDatabaseContext, value);
+            await _listService.InsertHouse(_demoDatabaseContext, value);
         }
 
         /// <summary>

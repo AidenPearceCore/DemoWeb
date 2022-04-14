@@ -20,7 +20,7 @@ namespace DemoWeb.Controllers
         public void Post(List<IFormFile> files)
         {
             string rootPath = _env.ContentRootPath + @"\wwwroot\"; //取得存放目錄            
-            foreach (var file in files)                            //多筆檔案傳入
+            foreach (var file in files)                            //多筆檔案傳入(少量檔案筆數可忽略foreach對效能的影響)
             {                
                 if(file.Length > 0)                                //空檔案不上傳
                 {
