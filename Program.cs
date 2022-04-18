@@ -3,6 +3,8 @@ using DemoWeb.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +13,55 @@ builder.Services.AddScoped<ListService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1.0",
+        Title = "DemoWeb API",
+        Description = "Simple ASP.NET Core WebApi",
+        TermsOfService = new Uri("https://github.com/yuchenmvc/demoweb"),
+        Contact = new OpenApiContact
+        {
+            Name = "YuChenMVC",
+            Url = new Uri("https://github.com/yuchenmvc")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "MIT License",
+            Url = new Uri("https://choosealicense.com/licenses/mit/")
+        }
+    });
+    //options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+    //{
+    //    Name = "Authorization",
+    //    In = ParameterLocation.Header,
+    //    Type = SecuritySchemeType.ApiKey,
+    //    Scheme = "Bearer",
+    //    BearerFormat = "JWT",
+    //    Description = "JWT Authorization"
+    //});
+    //options.AddSecurityRequirement(new OpenApiSecurityRequirement()
+    //{
+    //    { new OpenApiSecurityScheme(){ }, new List<string>() }
+    //});
+    //options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    //{
+    //    {
+    //        new OpenApiSecurityScheme
+    //        {
+    //            Reference = new OpenApiReference
+    //            {
+    //                Type = ReferenceType.SecurityScheme,
+    //                Id = "Bearer"
+    //            }
+    //        },
+    //        new string[]{ }
+    //    }
+    //});
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
 // Register EntityFrameworkCore Service
 builder.Services.AddDbContext<DemoDatabaseContext>(options =>
 {
