@@ -32,33 +32,32 @@ builder.Services.AddSwaggerGen(options =>
             Url = new Uri("https://choosealicense.com/licenses/mit/")
         }
     });
-    //options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
-    //{
-    //    Name = "Authorization",
-    //    In = ParameterLocation.Header,
-    //    Type = SecuritySchemeType.ApiKey,
-    //    Scheme = "Bearer",
-    //    BearerFormat = "JWT",
-    //    Description = "JWT Authorization"
-    //});
-    //options.AddSecurityRequirement(new OpenApiSecurityRequirement()
-    //{
-    //    { new OpenApiSecurityScheme(){ }, new List<string>() }
-    //});
-    //options.AddSecurityRequirement(new OpenApiSecurityRequirement
-    //{
-    //    {
-    //        new OpenApiSecurityScheme
-    //        {
-    //            Reference = new OpenApiReference
-    //            {
-    //                Type = ReferenceType.SecurityScheme,
-    //                Id = "Bearer"
-    //            }
-    //        },
-    //        new string[]{ }
-    //    }
-    //});
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+    {
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        Description = "JWT Authorization"
+    });
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement()
+    {
+        { 
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                },
+                Scheme = "oauth2",
+                Name = "Bearer",
+                In = ParameterLocation.Header
+            },
+            new List<string>() 
+        }
+    });
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });

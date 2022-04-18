@@ -23,7 +23,7 @@ namespace DemoWeb.Controllers
 
         #region #region 使用Restful風格實作WebApi
         /// <summary>
-        /// GET: api/<ListController>
+        /// GET: api/ListController
         /// </summary>
         [HttpGet]
         public IActionResult Get()
@@ -41,7 +41,7 @@ namespace DemoWeb.Controllers
         }
 
         /// <summary>
-        /// GET api/<ListController>/id
+        /// GET api/ListController/id
         /// </summary>
         /// <param name="value">預查詢的欄位id值</param>
         [HttpGet("{id}")]
@@ -58,7 +58,7 @@ namespace DemoWeb.Controllers
         }
 
         /// <summary>
-        /// POST api/<ListController>
+        /// POST api/ListController
         /// </summary>
         /// <param name="value">預新增的Model欄位</param>
         [HttpPost]
@@ -68,7 +68,7 @@ namespace DemoWeb.Controllers
         }
 
         /// <summary>
-        /// PUT api/<ListController>/id
+        /// PUT api/ListController/id
         /// </summary>
         /// <param name="id">預更新的欄位id值</param>
         /// <param name="value">預更新的Model資料</param>
@@ -79,7 +79,7 @@ namespace DemoWeb.Controllers
         }
 
         /// <summary>
-        /// DELETE api/<ListController>/id
+        /// DELETE api/ListController/id
         /// </summary>
         /// <param name="value">預刪除的欄位id值</param>
         [HttpDelete("{id}")]
