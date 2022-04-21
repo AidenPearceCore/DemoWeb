@@ -10,7 +10,7 @@ namespace DemoWeb.Controllers
     [ApiController]
     public class ListController : ControllerBase
     {
-        #region 依賴注入(資料庫,Service)
+        #region 注入(資料庫,Service)
         private readonly DemoDatabaseContext _demoDatabaseContext;
         private readonly ListService _listService;
 

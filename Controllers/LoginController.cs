@@ -13,7 +13,7 @@ namespace DemoWeb.Controllers
     [AllowAnonymous]
     public class LoginController : ControllerBase
     {
-        #region 依賴注入(資料庫,log)
+        #region 注入(資料庫,log)
         private readonly DemoDatabaseContext _demoDatabaseContext;
         private readonly ILogger<WeatherForecastController> _logger;
         public LoginController(DemoDatabaseContext demoDatabaseContext, ILogger<WeatherForecastController> logger)
