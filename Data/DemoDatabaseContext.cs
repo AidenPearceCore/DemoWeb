@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using DemoWeb.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace DemoWeb.Models
+namespace DemoWeb.Data
 {
     public partial class DemoDatabaseContext : DbContext
     {

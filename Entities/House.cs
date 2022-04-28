@@ -1,4 +1,4 @@
-﻿namespace DemoWeb.Models
+﻿namespace DemoWeb.Entities
 {
 
     #region House的Model

@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DemoWeb.Services;
-using DemoWeb.Models;
+using DemoWeb.Entities;
 using DemoWeb.DTOs;
 using DemoWeb.Parameters;
+using DemoWeb.Data;
+using DemoWeb.Repositories;
 
 namespace DemoWeb.Controllers
 {
@@ -11,12 +12,12 @@ namespace DemoWeb.Controllers
     public class ListController : ControllerBase
     {
         #region 注入(資料庫,Service)
-        private readonly DemoDatabaseContext _demoDatabaseContext;
-        private readonly ListService _listService;
+        //private readonly DemoDatabaseContext _demoDatabaseContext;
+        private readonly ListRepository _listService;
 
-        public ListController(DemoDatabaseContext demoDatabaseContext, ListService listService)
+        public ListController(/*DemoDatabaseContext demoDatabaseContext,*/ ListRepository listService)
         {
-            _demoDatabaseContext = demoDatabaseContext;
+            //_demoDatabaseContext = demoDatabaseContext;
             _listService = listService;
         }
         #endregion
@@ -28,7 +29,7 @@ namespace DemoWeb.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var result = _listService.GetAllHouses(_demoDatabaseContext);
+            var result = _listService.GetAllHouses();
             //這行是DTO版的Model
             //var result = _listService.GetAllHousesByDTO(_demoDatabaseContext);
 
@@ -47,7 +48,7 @@ namespace DemoWeb.Controllers
         [HttpGet("{id}")]
         public ListSelectDto Get([FromRoute] ListSelectParameter value)
         {
-            var result = _listService.GetHouseById(_demoDatabaseContext, value.id);
+            var result = _listService.GetHouseById(value.id);
 
             if (result is null)
             {
@@ -64,7 +65,7 @@ namespace DemoWeb.Controllers
         [HttpPost]
         public async Task Post([FromBody] House value)
         {
-            await _listService.InsertHouse(_demoDatabaseContext, value);
+            await _listService.InsertHouse(value);
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace DemoWeb.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] House value)
         {
-            _listService.UpdateHouseById(_demoDatabaseContext, id, value);
+            _listService.UpdateHouseById(id, value);
         }
 
         /// <summary>
@@ -85,7 +86,7 @@ namespace DemoWeb.Controllers
         [HttpDelete("{id}")]
         public void Delete([FromRoute] ListSelectParameter value)
         {
-            _listService.DeleteHouseById(_demoDatabaseContext, value.id);
+            _listService.DeleteHouseById(value.id);
         }
         #endregion
     }

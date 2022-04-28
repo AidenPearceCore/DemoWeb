@@ -1,4 +1,5 @@
-﻿using DemoWeb.Models;
+﻿using DemoWeb.Data;
+using DemoWeb.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace DemoWeb.ValidationAttributes

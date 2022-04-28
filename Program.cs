@@ -1,15 +1,17 @@
-using DemoWeb.Models;
-using DemoWeb.Services;
+using DemoWeb.Repositories.Contracts;
+using DemoWeb.Entities;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using DemoWeb.Data;
+using DemoWeb.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddScoped<ListService>();
+builder.Services.AddScoped<ListRepository>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

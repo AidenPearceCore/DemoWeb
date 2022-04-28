@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DemoWeb.Models
+namespace DemoWeb.Entities
 {
     public partial class Uploadfile
     {
