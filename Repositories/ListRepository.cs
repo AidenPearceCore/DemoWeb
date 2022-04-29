@@ -22,8 +22,6 @@ namespace DemoWeb.Repositories
             _demoDatabaseContext = demoDatabaseContext;
         }
 
-
-        #region 第二層ListService層
         public IEnumerable<ListSelectDto> GetAllHousesByDTO()
         {
             var result = _demoDatabaseContext.Houses
@@ -58,7 +56,6 @@ namespace DemoWeb.Repositories
             //與AutoMapper寫法 比較
             //return _iMapper.Map<IEnumerable<House>>(result);
         }
-
 
         public ListSelectDto GetHouseById(int id)
         {
@@ -140,8 +137,7 @@ namespace DemoWeb.Repositories
         //    }
 
         //    return result;
-        //}
-        #endregion
+        //}        
 
     }
 }

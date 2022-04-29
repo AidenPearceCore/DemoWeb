@@ -1,6 +1,0 @@
-﻿namespace DemoWeb.Services
-{
-    public class Service
-    {
-    }
-}

@@ -8,6 +8,5 @@
         public string? Type { get; set; }
         public int? Numberofrooms { get; set; }
         public int? Price { get; set; }
-
     }
 }

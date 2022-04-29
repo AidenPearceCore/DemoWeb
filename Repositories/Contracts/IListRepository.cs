@@ -5,7 +5,6 @@ using DemoWeb.Entities;
 
 namespace DemoWeb.Repositories.Contracts
 {
-    #region 這裡放置DI容器
     public interface IListRepository
     {
         void DeleteHouseById(int id);
@@ -15,5 +14,4 @@ namespace DemoWeb.Repositories.Contracts
         Task InsertHouse(House value);
         void UpdateHouseById(int id, House value);
     }
-    #endregion
 }

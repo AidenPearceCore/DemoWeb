@@ -2,7 +2,6 @@
 using DemoWeb.Entities;
 using DemoWeb.DTOs;
 using DemoWeb.Parameters;
-using DemoWeb.Data;
 using DemoWeb.Repositories;
 
 namespace DemoWeb.Controllers
@@ -11,16 +10,12 @@ namespace DemoWeb.Controllers
     [ApiController]
     public class ListController : ControllerBase
     {
-        #region 注入(資料庫,Service)
-        //private readonly DemoDatabaseContext _demoDatabaseContext;
-        private readonly ListRepository _listService;
+        private readonly ListRepository _listRepository;
 
-        public ListController(/*DemoDatabaseContext demoDatabaseContext,*/ ListRepository listService)
+        public ListController(ListRepository listRepository)
         {
-            //_demoDatabaseContext = demoDatabaseContext;
-            _listService = listService;
+            _listRepository = listRepository;
         }
-        #endregion
 
         #region #region 使用Restful風格實作WebApi
         /// <summary>
@@ -29,26 +24,34 @@ namespace DemoWeb.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var result = _listService.GetAllHouses();
-            //這行是DTO版的Model
-            //var result = _listService.GetAllHousesByDTO(_demoDatabaseContext);
-
-            if(result is null || result.Count() == 0)
+            try
             {
-                return NotFound("404 Not Found");
+                var result = _listRepository.GetAllHouses();
+                //這行是DTO版的Model
+                //var result = _listService.GetAllHousesByDTO(_demoDatabaseContext);
+
+                if(result is null || result.Count() == 0)
+                {
+                    return NotFound("404 Not Found");
+                }
+
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,"Status 500");
             }
 
-            return Ok(result);
         }
 
         /// <summary>
         /// GET api/ListController/id
         /// </summary>
-        /// <param name="value">預查詢的欄位id值</param>
+        /// <param name="value">欲查詢的欄位id值</param>
         [HttpGet("{id}")]
         public ListSelectDto Get([FromRoute] ListSelectParameter value)
         {
-            var result = _listService.GetHouseById(value.id);
+            var result = _listRepository.GetHouseById(value.id);
 
             if (result is null)
             {
@@ -61,32 +64,32 @@ namespace DemoWeb.Controllers
         /// <summary>
         /// POST api/ListController
         /// </summary>
-        /// <param name="value">預新增的Model欄位</param>
+        /// <param name="value">欲新增的Model欄位</param>
         [HttpPost]
         public async Task Post([FromBody] House value)
         {
-            await _listService.InsertHouse(value);
+            await _listRepository.InsertHouse(value);
         }
 
         /// <summary>
         /// PUT api/ListController/id
         /// </summary>
-        /// <param name="id">預更新的欄位id值</param>
-        /// <param name="value">預更新的Model資料</param>
+        /// <param name="id">欲更新的欄位id值</param>
+        /// <param name="value">欲更新的Model資料</param>
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] House value)
         {
-            _listService.UpdateHouseById(id, value);
+            _listRepository.UpdateHouseById(id, value);
         }
 
         /// <summary>
         /// DELETE api/ListController/id
         /// </summary>
-        /// <param name="value">預刪除的欄位id值</param>
+        /// <param name="value">欲刪除的欄位id值</param>
         [HttpDelete("{id}")]
         public void Delete([FromRoute] ListSelectParameter value)
         {
-            _listService.DeleteHouseById(value.id);
+            _listRepository.DeleteHouseById(value.id);
         }
         #endregion
     }

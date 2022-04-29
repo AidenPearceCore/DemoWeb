@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DemoWeb.Entities;
-using DemoWeb.DTOs;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using DemoWeb.Entities;
+using DemoWeb.DTOs;
 using DemoWeb.Data;
 
 namespace DemoWeb.Controllers
@@ -14,7 +14,6 @@ namespace DemoWeb.Controllers
     [AllowAnonymous]
     public class LoginController : ControllerBase
     {
-        #region 注入(資料庫,log)
         private readonly DemoDatabaseContext _demoDatabaseContext;
         private readonly ILogger<WeatherForecastController> _logger;
         public LoginController(DemoDatabaseContext demoDatabaseContext, ILogger<WeatherForecastController> logger)
@@ -22,7 +21,6 @@ namespace DemoWeb.Controllers
             _demoDatabaseContext = demoDatabaseContext;
             _logger = logger;
         }
-        #endregion
 
         /// <summary>
         /// 使用者登入
